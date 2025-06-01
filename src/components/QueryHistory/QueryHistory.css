@@ -1,0 +1,76 @@
+/* src/components/QueryHistory.css */
+
+.query-history-section {
+    margin-top: 30px;
+}
+
+.query-history-section h2 {
+    margin-bottom: 15px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 5px;
+    color: #0056b3;
+}
+
+.no-history-message {
+    color: #666;
+    text-align: center;
+    padding: 20px;
+    border: 1px dashed #ddd;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+.history-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    max-height: 300px; /* Limit height to enable scrolling */
+    overflow-y: auto; /* Enable vertical scrolling */
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #fff;
+}
+
+.history-item {
+    border-bottom: 1px solid #eee;
+}
+
+.history-item:last-child {
+    border-bottom: none; /* No border for the last item */
+}
+
+.history-item button {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 10px 15px;
+    text-align: left;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-family: 'Courier New', Courier, monospace; /* Monospace for queries */
+    font-size: 0.9em;
+    color: #333;
+    transition: background-color 0.2s ease;
+}
+
+.history-item button:hover {
+    background-color: #eaf6ff; /* Light blue on hover */
+}
+
+.history-item .query-text {
+    white-space: pre-wrap; /* Preserve whitespace and wrap text */
+    word-break: break-word; /* Break long words */
+    max-height: 4.5em; /* Show max 3 lines of query */
+    overflow: hidden;
+    text-overflow: ellipsis; /* Add ellipsis if more content */
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #2a6496; /* A slightly darker blue for query text */
+}
+
+.history-item .query-timestamp {
+    font-size: 0.75em;
+    color: #888;
+    align-self: flex-end; /* Align timestamp to the right */
+}

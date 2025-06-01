@@ -1,0 +1,67 @@
+/* src/App.css */
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 20px;
+  background-color: #f4f4f4;
+  color: #333;
+  line-height: 1.6;
+}
+
+.container {
+  margin: 20px auto;
+  background-color: #fff;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+  color: #0056b3;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+h2 {
+  color: #0056b3;
+  margin-top: 30px;
+  margin-bottom: 15px;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 5px;
+}
+
+.description {
+  text-align: center;
+  margin-bottom: 30px;
+  color: #666;
+}
+
+/* New: Two-column layout */
+.main-content {
+  display: flex;
+  gap: 20px; /* Space between columns */
+  flex-wrap: wrap; /* Allow wrapping on smaller screens */
+}
+
+.left-panel {
+  flex: 1; /* Takes up available space */
+  min-width: 280px; /* Minimum width for history/predefined queries */
+  max-width: 450px; /* Max width for side panel */
+}
+
+.right-panel {
+  flex: 2; /* Takes up more space */
+  min-width: 400px; /* Minimum width for editor/results */
+}
+
+/* Basic responsiveness */
+@media (max-width: 768px) {
+  .main-content {
+      flex-direction: column; /* Stack columns vertically on small screens */
+  }
+  .left-panel, .right-panel {
+      max-width: 100%; /* Full width */
+      min-width: unset; /* Remove min-width constraint */
+  }
+}

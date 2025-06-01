@@ -1,0 +1,170 @@
+/* src/components/SavedQueries.css */
+
+.saved-queries-section {
+    margin-top: 30px;
+}
+
+.saved-queries-section h2 {
+    margin-bottom: 15px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 5px;
+    color: #0056b3;
+}
+
+.save-query-input {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.save-query-input input {
+    flex-grow: 1;
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 0.95em;
+}
+
+.save-query-input button {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.95em;
+    transition: background-color 0.2s ease;
+}
+
+.save-query-input button:hover:not(:disabled) {
+    background-color: #218838;
+}
+
+.save-query-input button:disabled {
+    background-color: #e0e0e0;
+    cursor: not-allowed;
+}
+
+.save-message {
+    padding: 8px 12px;
+    margin-bottom: 15px;
+    border-radius: 4px;
+    font-size: 0.9em;
+    text-align: center;
+}
+
+.save-message.success {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+.save-message.error {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+.no-saved-queries-message {
+    color: #666;
+    text-align: center;
+    padding: 20px;
+    border: 1px dashed #ddd;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    margin-top: 15px;
+}
+
+.saved-queries-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    max-height: 250px; /* Limit height to enable scrolling */
+    overflow-y: auto; /* Enable vertical scrolling */
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #fff;
+    margin-top: 15px;
+}
+
+.saved-query-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start; /* Align to top for long queries */
+    border-bottom: 1px solid #eee;
+    padding: 10px 15px;
+}
+
+.saved-query-item:last-child {
+    border-bottom: none;
+}
+
+.saved-query-item .query-details {
+    flex-grow: 1;
+    margin-right: 10px;
+    overflow: hidden; /* Hide overflowing text */
+}
+
+.saved-query-item .query-name {
+    font-weight: bold;
+    color: #0056b3;
+    display: block;
+    margin-bottom: 5px;
+    font-size: 1.1em;
+}
+
+.saved-query-item .query-timestamp {
+    font-size: 0.75em;
+    color: #888;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.saved-query-item .query-preview {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.85em;
+    color: #555;
+    background-color: #f0f0f0;
+    padding: 5px;
+    border-radius: 3px;
+    white-space: pre-wrap; /* Preserve whitespace and wrap text */
+    word-break: break-word; /* Break long words */
+    max-height: 3.5em; /* Limit preview to 3 lines */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin: 0;
+}
+
+.saved-query-item .query-actions {
+    display: flex;
+    gap: 5px;
+    flex-shrink: 0; /* Prevent actions from shrinking */
+    padding-top: 5px; /* Align buttons better with content */
+}
+
+.saved-query-item .query-actions button {
+    padding: 6px 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.85em;
+    transition: background-color 0.2s ease;
+}
+
+.saved-query-item .query-actions .load-btn {
+    background-color: #007bff;
+    color: white;
+}
+
+.saved-query-item .query-actions .load-btn:hover {
+    background-color: #0056b3;
+}
+
+.saved-query-item .query-actions .delete-btn {
+    background-color: #dc3545;
+    color: white;
+}
+
+.saved-query-item .query-actions .delete-btn:hover {
+    background-color: #c82333;
+}

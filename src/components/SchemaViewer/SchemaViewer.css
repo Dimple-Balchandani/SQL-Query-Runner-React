@@ -1,0 +1,110 @@
+/* src/components/SchemaViewer.css */
+
+.schema-viewer-section {
+    margin-top: 30px;
+}
+
+.schema-viewer-section h2 {
+    margin-bottom: 15px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 5px;
+    color: #0056b3;
+}
+
+.no-schema-message {
+    color: #666;
+    text-align: center;
+    padding: 20px;
+    border: 1px dashed #ddd;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+.schema-tree ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #fff;
+    max-height: 350px; /* Limit height for scrolling */
+    overflow-y: auto;
+}
+
+.schema-table-item, .schema-column-item {
+    border-bottom: 1px solid #eee;
+}
+
+.schema-table-item:last-child, .schema-column-item:last-child {
+    border-bottom: none;
+}
+
+.schema-table-item .table-name-toggle {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 10px 15px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    text-align: left;
+    font-size: 1em;
+    font-weight: bold;
+    color: #333;
+    transition: background-color 0.2s ease;
+}
+
+.schema-table-item .table-name-toggle:hover {
+    background-color: #eaf6ff;
+}
+
+.schema-table-item .toggle-icon {
+    margin-right: 8px;
+    font-size: 0.8em;
+    color: #555;
+    transition: transform 0.2s ease;
+}
+
+.schema-table-item .table-name-text {
+    flex-grow: 1; /* Allow text to take available space */
+    color: #0056b3;
+}
+
+.schema-columns-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    padding-left: 25px; /* Indent columns */
+    background-color: #f9f9f9;
+    border-top: 1px dashed #eee;
+}
+
+.schema-column-item button {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 8px 15px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    text-align: left;
+    font-size: 0.9em;
+    color: #555;
+    transition: background-color 0.2s ease;
+}
+
+.schema-column-item button:hover {
+    background-color: #f0f8ff;
+}
+
+.schema-column-item .column-name {
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+    color: #2a6496;
+}
+
+.schema-column-item .column-type {
+    font-size: 0.8em;
+    color: #888;
+}

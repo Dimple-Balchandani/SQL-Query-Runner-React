@@ -1,0 +1,49 @@
+.query-input-section {
+    margin-bottom: 30px;
+}
+
+textarea {
+    width: 100%;
+    padding: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 1em;
+    resize: vertical;
+    box-sizing: border-box;
+    margin-bottom: 15px;
+    color: darkslategray;
+}
+
+.buttons {
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+}
+
+.buttons button {
+    padding: 12px 25px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.2s ease;
+}
+
+#runQueryBtn {
+    background-color: #007bff;
+    color: white;
+}
+
+#runQueryBtn:hover {
+    background-color: #0056b3;
+}
+
+#clearBtn {
+    background-color: #6c757d;
+    color: white;
+}
+
+#clearBtn:hover {
+    background-color: #5a6268;
+}

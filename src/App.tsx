@@ -1,0 +1,69 @@
+import React from 'react';
+import './App.css';
+import { useQueryManager } from './hooks/useQueryManager.ts';
+import PredefinedQueries from './components/PredefinedQueries';
+import QueryInputSection from './components/QueryInputSection';
+import QueryResult from './components/QueryResult';
+import QueryHistory from './components/QueryHistory';
+import SavedQueries from './components/SavedQueries';
+import SchemaViewer from './components/SchemaViewer';
+
+function App() {
+    const {
+        sqlQuery,
+        setSqlQuery,
+        queryResult,
+        isLoading,
+        queryHistory,
+        savedQueries,
+        editorRef,
+        handleRunQuery,
+        handleClear,
+        handlePredefinedQuerySelect,
+        handleHistorySelect,
+        handleSaveQuery,
+        handleLoadQuery,
+        handleDeleteSavedQuery,
+        handleSchemaItemSelect,
+        schema
+    } = useQueryManager();
+
+    return (
+        <div className="container">
+            <h1>Dummy SQL Query Runner</h1>
+            <p className="description">
+                This is a dummy web application to simulate running SQL queries and displaying results.
+                Enter a query or select one of the predefined queries to see a sample output.
+                No actual database backend is connected.
+            </p>
+
+            <div className="main-content">
+                <div className="left-panel">
+                    <PredefinedQueries onSelect={handlePredefinedQuerySelect} />
+                    <QueryHistory history={queryHistory} onSelect={handleHistorySelect} />
+                    <SavedQueries
+                        currentQuery={sqlQuery}
+                        savedQueries={savedQueries}
+                        onSave={handleSaveQuery}
+                        onLoad={handleLoadQuery}
+                        onDelete={handleDeleteSavedQuery}
+                    />
+                    <SchemaViewer schema={schema} onSelect={handleSchemaItemSelect} />
+                </div>
+                <div className="right-panel">
+                    <QueryInputSection
+                        sqlQuery={sqlQuery}
+                        onQueryChange={setSqlQuery}
+                        onRunQuery={handleRunQuery}
+                        onClear={handleClear}
+                        isLoading={isLoading}
+                        editorRef={editorRef}
+                    />
+                    <QueryResult result={queryResult} isLoading={isLoading} />
+                </div>
+            </div>
+        </div>
+    );
+}
+
+export default App;
