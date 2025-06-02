@@ -1,10 +1,8 @@
 import { QueryData, SchemaTable } from './types';
-import { generateLargeDataset } from './utils';
 
 export const HISTORY_MAX_SIZE = 10;
 export const LOCAL_STORAGE_KEY = 'sqlQueryHistory';
 export const LOCAL_STORAGE_SAVED_QUERIES_KEY = 'sqlSavedQueries';
-export const dummyLargeData: QueryData = generateLargeDataset(50000);
 export const LOCAL_STORAGE_HISTORY_KEY = 'sqlQueryHistory';
 
 export const dummyData: { [key: string]: QueryData } = {

@@ -1,4 +1,3 @@
-import React from 'react';
 import './App.css';
 import { useQueryManager } from './hooks/useQueryManager.ts';
 import PredefinedQueries from './components/PredefinedQueries';
@@ -30,9 +29,9 @@ function App() {
 
     return (
         <div className="container">
-            <h1>Dummy SQL Query Runner</h1>
+            <h1>SQL Query Runner</h1>
             <p className="description">
-                This is a dummy web application to simulate running SQL queries and displaying results.
+                This is a web application to simulate running SQL queries and displaying results.
                 Enter a query or select one of the predefined queries to see a sample output.
                 No actual database backend is connected.
             </p>

@@ -1,16 +1,13 @@
-// src/components/SchemaViewer.tsx
-
 import React, { useState } from 'react';
-import { SchemaTable, SchemaColumn } from '../types';
-import './SchemaViewer.css'; // New: Component-specific styles
+import { SchemaTable } from '../../types';
+import './SchemaViewer.css';
 
 interface SchemaViewerProps {
     schema: SchemaTable[];
-    onSelect: (item: string) => void; // Callback when a table/column name is clicked
+    onSelect: (item: string) => void;
 }
 
 const SchemaViewer: React.FC<SchemaViewerProps> = ({ schema, onSelect }) => {
-    // State to manage which tables are expanded
     const [expandedTables, setExpandedTables] = useState<Set<string>>(new Set());
 
     const toggleTableExpansion = (tableName: string) => {
@@ -43,7 +40,7 @@ const SchemaViewer: React.FC<SchemaViewerProps> = ({ schema, onSelect }) => {
                                     <span className="toggle-icon">
                                         {expandedTables.has(table.name) ? '▼' : '►'}
                                     </span>
-                                    <span onClick={(e) => { // Allow clicking table name to insert it
+                                    <span onClick={(e) => {
                                         e.stopPropagation(); // Prevent toggling when clicking text itself
                                         onSelect(table.name);
                                     }} className="table-name-text">

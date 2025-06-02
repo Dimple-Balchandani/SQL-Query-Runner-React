@@ -9,8 +9,8 @@ import {
 import {
     dummySchema
 } from '../constants';
-import { initialQueryManagerState, queryManagerReducer, init } from '../reducers/queryManagerReducer';
 import { getDataFromQuery, getDataToDisplay } from '../utils';
+import { initialQueryManagerState, queryManagerReducer, init } from '../reducers/queryManagerReducer';
 
 interface UseQueryManagerResult {
     sqlQuery: string;

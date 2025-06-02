@@ -1,11 +1,9 @@
-// src/components/SavedQueries.tsx
-
 import React, { useState } from 'react';
-import { SavedQuery } from '../types';
-import './SavedQueries.css'; // New: Component-specific styles
+import { SavedQuery } from '../../types';
+import './SavedQueries.css';
 
 interface SavedQueriesProps {
-    currentQuery: string; // The query currently in the editor
+    currentQuery: string;
     savedQueries: SavedQuery[];
     onSave: (name: string, queryToSave: string) => { success: boolean, message: string };
     onLoad: (queryId: string) => void;
@@ -20,9 +18,8 @@ const SavedQueries: React.FC<SavedQueriesProps> = ({ currentQuery, savedQueries,
         const result = onSave(queryName, currentQuery);
         setSaveMessage({ type: result.success ? 'success' : 'error', text: result.message });
         if (result.success) {
-            setQueryName(''); // Clear name input on successful save
+            setQueryName('');
         }
-        // Clear message after a few seconds
         setTimeout(() => setSaveMessage(null), 3000);
     };
 
@@ -36,7 +33,7 @@ const SavedQueries: React.FC<SavedQueriesProps> = ({ currentQuery, savedQueries,
                     placeholder="Enter name to save current query"
                     value={queryName}
                     onChange={(e) => setQueryName(e.target.value)}
-                    onKeyPress={(e) => { // Allow saving by pressing Enter in the input
+                    onKeyPress={(e) => { 
                         if (e.key === 'Enter') {
                             handleSaveClick();
                         }
@@ -61,7 +58,7 @@ const SavedQueries: React.FC<SavedQueriesProps> = ({ currentQuery, savedQueries,
                             <div className="query-details">
                                 <span className="query-name">{item.name}</span>
                                 <span className="query-timestamp">{item.timestamp}</span>
-                                <pre className="query-preview">{item.query}</pre> {/* Display preview */}
+                                <pre className="query-preview">{item.query}</pre>
                             </div>
                             <div className="query-actions">
                                 <button className="load-btn" onClick={() => onLoad(item.id)} title="Load Query">

@@ -1,6 +1,6 @@
 import React from 'react';
 import { FixedSizeList } from 'react-window';
-import { QueryResultState } from '../types';
+import { QueryResultState } from '../../types';
 import './QueryResult.css';
 
 interface QueryResultProps {
@@ -14,7 +14,7 @@ const QueryResult: React.FC<QueryResultProps> = ({ result, isLoading }) => {
     if (isLoading) {
         content = (
             <div className="query-status loading">
-                <div className="spinner"></div>
+                <div className="spinner" data-testid="spinner-element"></div>
                 <span>Loading results...</span>
             </div>
         );
@@ -26,7 +26,7 @@ const QueryResult: React.FC<QueryResultProps> = ({ result, isLoading }) => {
         );
     } else if (result.status === 'error') {
         content = (
-            <div className="query-status error">
+            <div className="query-status error" data-testId="query-error">
                 <strong>Error:</strong> {result.message || 'An unexpected error occurred.'}
             </div>
         );

@@ -1,5 +1,5 @@
 import React from 'react';
-import { QueryHistoryItem } from '../types';
+import { QueryHistoryItem } from '../../types';
 import './QueryHistory.css'; // New: Component-specific styles
 
 interface QueryHistoryProps {

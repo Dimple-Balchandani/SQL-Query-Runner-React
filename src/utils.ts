@@ -1,4 +1,4 @@
-import { dummyData, dummyLargeData } from './constants';
+import { dummyData } from './constants';
 import { QueryData, QueryResultState } from './types';
 
 export const generateLargeDataset = (numRows: number): QueryData => {
@@ -16,7 +16,7 @@ export const generateLargeDataset = (numRows: number): QueryData => {
     return { headers, rows };
 };
 
-export const getDataFromQuery = (query) => {
+export const getDataFromQuery = (query: string) => {
     let resultData : QueryData | QueryResultState | null = null;
     if (query.toLowerCase().includes('from employees')) {
         resultData = dummyData.employees;
@@ -25,7 +25,7 @@ export const getDataFromQuery = (query) => {
     } else if (query.toLowerCase().includes('from orders')) {
         resultData = dummyData.orders;
     } else if (query.toLowerCase().includes('from large_data_table')) {
-        resultData = dummyLargeData;
+        resultData = generateLargeDataset(50000);
     }
     else {
         resultData = {
@@ -36,7 +36,7 @@ export const getDataFromQuery = (query) => {
     return resultData
 }
 
-export const getDataToDisplay = (queryId) => {
+export const getDataToDisplay = (queryId: string) => {
     let queryText = '';
     let dataToDisplay : QueryData | null = null;
 
@@ -55,7 +55,7 @@ export const getDataToDisplay = (queryId) => {
             break;
         case 'largeData':
             queryText = 'SELECT * FROM Large_Data_Table;';
-            dataToDisplay = dummyLargeData;
+            dataToDisplay = generateLargeDataset(50000);
             break;
         default:
             queryText = '';
