@@ -4,6 +4,8 @@ export const HISTORY_MAX_SIZE = 10;
 export const LOCAL_STORAGE_KEY = 'sqlQueryHistory';
 export const LOCAL_STORAGE_SAVED_QUERIES_KEY = 'sqlSavedQueries';
 export const LOCAL_STORAGE_HISTORY_KEY = 'sqlQueryHistory';
+export const ROW_HEIGHT = 38;
+export const MIN_COLUMN_WIDTH = 100;
 
 export const dummyData: { [key: string]: QueryData } = {
     employees: {

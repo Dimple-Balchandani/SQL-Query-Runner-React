@@ -58,7 +58,7 @@ function App() {
                         isLoading={isLoading}
                         editorRef={editorRef}
                     />
-                    <QueryResult result={queryResult} isLoading={isLoading} />
+                    <QueryResult queryResult={queryResult} />
                 </div>
             </div>
         </div>
@@ -66,3 +66,4 @@ function App() {
 }
 
 export default App;
+

@@ -33,6 +33,34 @@ export interface SchemaTable {
     columns: SchemaColumn[];
 }
 
+export type SortDirection = 'asc' | 'desc';
+
+export interface SortState {
+    column: string | null;
+    direction: SortDirection;
+}
+
+export interface QueryResultProps {
+    queryResult: QueryResultState | null;
+}
+
+export interface ListItemData {
+    rows: string[][];
+    headers: string[];
+    columnWidths: number[];
+    handleSort: (column: string) => void;
+    sortState: SortState;
+}
+
+export interface VirtualizedTableProps {
+    headers: string[];
+    rows: string[][];
+    sortState: SortState;
+    onSort: (column: string) => void;
+    searchTerm: string;
+    tableScrollWrapperRef: React.RefObject<HTMLDivElement  | null>;
+}
+
 export interface QueryManagerState {
     sqlQuery: string;
     queryResult: QueryResultState | null;
