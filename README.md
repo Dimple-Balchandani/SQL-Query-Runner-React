@@ -5,19 +5,21 @@ This is a web application designed to simulate running SQL queries and displayin
 ---
 
 ## 🎬 Walkthrough Video
+
 Check out this short video (under 3 minutes) for a quick overview of the application, a walkthrough of its implementation details, and a demonstration of how to execute queries:
 
-[Link to demo video]  
+[Link to demo video]
 
 ---
 
 ## 🚀 Technologies Used
+
 This application is built using the following core technologies and libraries:
 
 - **JavaScript Framework:**  
   **React (v18.x):** The primary JavaScript library for building the user interface, leveraging component-based architecture for modular and reusable UI elements.
 
-- **Key Packages & Plugins:**  
+- **Key Packages & Plugins:**
   - **react-window (v1.8.x):** Efficiently renders large datasets in the query result table by virtualizing rows, boosting performance with many rows.
   - **TypeScript (v5.x):** Adds static typing for improved code quality, readability, and maintainability.
   - **Vite (v5.x):** Our fast build tool, providing an optimized, native ES module-based development server.
@@ -26,9 +28,11 @@ This application is built using the following core technologies and libraries:
 ---
 
 ## ⏱️ Page Load Time
+
 I ensured a swift user experience with measured load times of approximately **1.5 - 2.5 seconds** on a typical broadband connection.
 
 ### How it was measured:
+
 - Opened the app in Chrome
 - Launched DevTools (F12 or right-click -> Inspect)
 - Navigated to the "Performance" tab
@@ -41,6 +45,7 @@ I analyzed the "Largest Contentful Paint (LCP)" and "Time to Interactive (TTI)" 
 ---
 
 ## ⚡ Performance Optimizations
+
 Several strategies were employed to keep the application fast and responsive:
 
 - **Code Splitting / Lazy Loading:**  

@@ -21,7 +21,9 @@ const SaveQueryModal: React.FC<SaveQueryModalProps> = ({ query, onSave, onClose,
     <div className="modal-backdrop">
       <div className="modal">
         <h3>Save Query</h3>
-        <p><strong>Query:</strong> {query}</p>
+        <p>
+          <strong>Query:</strong> {query}
+        </p>
         <input
           type="text"
           placeholder="Enter name for the query"
