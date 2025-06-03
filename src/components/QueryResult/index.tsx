@@ -2,6 +2,7 @@ import React, { useState, useMemo, useEffect, useRef } from 'react';
 import './QueryResult.css';
 import VirtualizedTable from '../VirtualizedTable/VirtualizedTable';
 import { QueryResultProps, SortState } from '../../types';
+import { escapeCsvField } from '../../utils';
 
 const QueryResult: React.FC<QueryResultProps> = ({ queryResult }) => {
     const [copyFeedback, setCopyFeedback] = useState<string | null>(null);
@@ -9,15 +10,6 @@ const QueryResult: React.FC<QueryResultProps> = ({ queryResult }) => {
     const [searchTerm, setSearchTerm] = useState<string>('');
     const [sortState, setSortState] = useState<SortState>({ column: null, direction: 'asc' });
     const tableScrollWrapperRef = useRef<HTMLDivElement | null>(null);
-
-    const escapeCsvField = (field: string | number | boolean | null | undefined): string => {
-        const strField = String(field === null || field === undefined ? '' : field);
-        if (strField.includes(',') || strField.includes('"') || strField.includes('\n') || strField.includes('\r') || strField.includes('\t')) {
-            const escapedField = strField.replace(/"/g, '""');
-            return `"${escapedField}"`;
-        }
-        return strField;
-    };
 
     const handleCopyResults = async () => {
         if (!queryResult || queryResult.status !== 'success' || (!queryResult.rows && !queryResult.message)) {
@@ -150,7 +142,6 @@ const QueryResult: React.FC<QueryResultProps> = ({ queryResult }) => {
     }, [queryResult]);
 
     const hasTabularData = queryResult?.status === 'success' && queryResult.headers && queryResult.rows && queryResult.rows.length > 0;
-    const hasAnyResultContent = queryResult?.status === 'success' && (queryResult.message || hasTabularData);
 
     return (
         <div className="query-result-area">

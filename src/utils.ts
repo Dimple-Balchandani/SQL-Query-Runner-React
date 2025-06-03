@@ -63,3 +63,12 @@ export const getDataToDisplay = (queryId: string) => {
     }
     return {queryText, dataToDisplay}
 }
+
+export const escapeCsvField = (field: string | number | boolean | null | undefined): string => {
+    const strField = String(field === null || field === undefined ? '' : field);
+    if (strField.includes(',') || strField.includes('"') || strField.includes('\n') || strField.includes('\r') || strField.includes('\t')) {
+        const escapedField = strField.replace(/"/g, '""');
+        return `"${escapedField}"`;
+    }
+    return strField;
+};

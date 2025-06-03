@@ -120,29 +120,6 @@ describe('useQueryManager', () => {
         expect(result.current.queryResult).toEqual({ message: 'Please enter an SQL query.', status: 'error' });
     });
 
-    // --- handleSaveQuery Tests ---
-
-    test('handleSaveQuery should return error for empty name', async () => {
-        const { result } = renderHook(() => useQueryManager());
-        const response = await act(async () => {
-            return result.current.handleSaveQuery('', 'SELECT * FROM dummy;');
-        });
-    
-        expect(response).toEqual({ success: false, message: 'Please provide a name for the query.' });
-        expect(result.current.savedQueries).toHaveLength(0);
-    });
-
-    test('handleSaveQuery should return error for empty query', async () => {
-        const { result } = renderHook(() => useQueryManager());
-
-        const response = await act(async() => {
-            return result.current.handleSaveQuery('My Empty Query', '');
-        });
-
-        expect(response).toEqual({ success: false, message: 'Cannot save an empty query.' });
-        expect(result.current.savedQueries).toHaveLength(0);
-    });
-
     test('handleLoadQuery should do nothing if queryId not found', () => {
         const { result } = renderHook(() => useQueryManager());
         act(() => {

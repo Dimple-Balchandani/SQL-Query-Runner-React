@@ -7,7 +7,8 @@ import {
     SchemaTable,
 } from '../types';
 import {
-    dummySchema
+    dummySchema,
+    LOCAL_STORAGE_SAVED_QUERIES_KEY
 } from '../constants';
 import { getDataForQuery } from '../utils';
 import { initialQueryManagerState, queryManagerReducer, init } from '../reducers/queryManagerReducer';
@@ -23,7 +24,7 @@ interface UseQueryManagerResult {
     handleRunQuery: () => void;
     handleClear: () => void;
     handleHistorySelect: (query: string) => void;
-    handleSaveQuery: (name: string, queryToSave: string) => { success: boolean, message: string };
+    handleSaveQuery: (name: string, queryToSave: string) => any;
     handleLoadQuery: (queryId: string) => void;
     handleDeleteSavedQuery: (queryId: string) => void;
     handleSchemaItemSelect: (item: string) => void;
@@ -124,16 +125,12 @@ export const useQueryManager = (): UseQueryManagerResult => {
     }, []);
 
     // Handles saving the current query
-    const handleSaveQuery = useCallback((name: string, queryToSave: string): { success: boolean, message: string } => {
+    const handleSaveQuery = useCallback((name: string, queryToSave: string) => {
         const trimmedQuery = queryToSave.trim();
         const trimmedName = name.trim();
+        const savedLocalQueries = JSON.parse(localStorage.getItem(LOCAL_STORAGE_SAVED_QUERIES_KEY) || '[]');
 
-        if (!trimmedName) {
-            return { success: false, message: 'Please provide a name for the query.' };
-        }
-        if (!trimmedQuery) {
-            return { success: false, message: 'Cannot save an empty query.' };
-        }
+        if (!trimmedName || !trimmedQuery) return;
 
         const newSavedQuery: SavedQuery = {
             id: Date.now().toString(),
@@ -143,7 +140,9 @@ export const useQueryManager = (): UseQueryManagerResult => {
         };
 
         dispatch({ type: 'ADD_OR_UPDATE_SAVED_QUERY', payload: newSavedQuery });
-        return { success: true, message: `Query "${trimmedName}" saved successfully.` };
+        const updated = [...savedLocalQueries, newSavedQuery];
+        localStorage.setItem(LOCAL_STORAGE_SAVED_QUERIES_KEY, JSON.stringify(updated));
+        return { data: newSavedQuery, success: true, message: `Query "${trimmedName}" saved successfully.` };
     }, []);
 
     // Handles loading a saved query
@@ -155,12 +154,13 @@ export const useQueryManager = (): UseQueryManagerResult => {
         }
     }, [state.savedQueries]);
 
-    // Handles deleting a saved query
     const handleDeleteSavedQuery = useCallback((queryId: string) => {
+        const savedLocalQueries = JSON.parse(localStorage.getItem(LOCAL_STORAGE_SAVED_QUERIES_KEY) || '[]');
         dispatch({ type: 'DELETE_SAVED_QUERY', payload: queryId });
+        const updated = savedLocalQueries.filter((q: SavedQuery) => q.id !== queryId);
+        localStorage.setItem(LOCAL_STORAGE_SAVED_QUERIES_KEY, JSON.stringify(updated));
     }, []);
 
-    // Handles inserting schema item into the query editor
     const handleSchemaItemSelect = useCallback((item: string) => {
         const editor = editorRef.current;
         if (!editor) return;
@@ -170,7 +170,7 @@ export const useQueryManager = (): UseQueryManagerResult => {
         const currentQuery = editor.value;
 
         const newQuery = currentQuery.substring(0, start) + item + currentQuery.substring(end);
-        dispatch({ type: 'SET_QUERY_INPUT', payload: newQuery }); // Dispatch the new query
+        dispatch({ type: 'SET_QUERY_INPUT', payload: newQuery });
 
         const newCursorPosition = start + item.length;
         setTimeout(() => {

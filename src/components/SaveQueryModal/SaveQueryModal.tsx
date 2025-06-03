@@ -1,4 +1,3 @@
-// components/SaveQueryModal.tsx
 import React, { useState } from 'react';
 import './SaveQueryModal.css';
 
@@ -6,9 +5,10 @@ interface SaveQueryModalProps {
   query: string;
   onSave: (name: string) => void;
   onClose: () => void;
+  message?: string;
 }
 
-const SaveQueryModal: React.FC<SaveQueryModalProps> = ({ query, onSave, onClose }) => {
+const SaveQueryModal: React.FC<SaveQueryModalProps> = ({ query, onSave, onClose, message }) => {
   const [name, setName] = useState('');
 
   const handleSubmit = () => {
@@ -32,6 +32,7 @@ const SaveQueryModal: React.FC<SaveQueryModalProps> = ({ query, onSave, onClose 
           <button onClick={handleSubmit}>Save</button>
           <button onClick={onClose}>Cancel</button>
         </div>
+        {message && <p className="save-message">{message}</p>}
       </div>
     </div>
   );

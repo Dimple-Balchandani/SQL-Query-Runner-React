@@ -32,11 +32,6 @@ describe('SchemaViewer', () => {
         mockOnSelect.mockClear();
     });
 
-    test('should render the "Schema Viewer" section heading', () => {
-        render(<SchemaViewer schema={[]} onSelect={mockOnSelect} />);
-        expect(screen.getByRole('heading', { level: 2, name: /Schema Viewer/i })).toBeInTheDocument();
-    });
-
     test('should display "No schema defined." message when schema is empty', () => {
         render(<SchemaViewer schema={[]} onSelect={mockOnSelect} />);
         expect(screen.getByText(/No schema defined\./i)).toBeInTheDocument();

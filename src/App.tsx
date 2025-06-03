@@ -24,7 +24,7 @@ function App() {
         handleSchemaItemSelect,
         schema
     } = useQueryManager();
-
+    
     return (
         <div className="container">
             <h1>SQL Query Runner</h1>
@@ -37,7 +37,12 @@ function App() {
             <div className="main-content">
                 <div className="left-panel">
                     <SchemaViewer schema={schema} onSelect={handleSchemaItemSelect} />
-                    <QueryHistory history={queryHistory} onSelect={handleHistorySelect} />
+                    <QueryHistory
+                        queryHistory={queryHistory}
+                        onSelect={handleHistorySelect}
+                        savedQueries={savedQueries}
+                        onSave={handleSaveQuery}
+                    />
                     <SavedQueries
                         currentQuery={sqlQuery}
                         savedQueries={savedQueries}
