@@ -158,7 +158,18 @@ const QueryResult: React.FC<QueryResultProps> = ({ queryResult }) => {
             {queryResult ? (
                 <>
                     <div className="query-result-actions">
-                        {hasAnyResultContent && (
+                        {hasTabularData && (
+                            <div className="result-search-container">
+                                <input
+                                    type="text"
+                                    placeholder="Search within results..."
+                                    value={searchTerm}
+                                    onChange={(e) => setSearchTerm(e.target.value)}
+                                    className="result-search-input"
+                                />
+                            </div>
+                        )}
+                        {hasTabularData && (
                             <button
                                 onClick={handleCopyResults}
                                 disabled={queryResult.status !== 'success'}
@@ -184,20 +195,9 @@ const QueryResult: React.FC<QueryResultProps> = ({ queryResult }) => {
                         </p>
                     )}
 
-                    {hasTabularData && (
-                        <div className="result-search-container">
-                            <input
-                                type="text"
-                                placeholder="Search within results..."
-                                value={searchTerm}
-                                onChange={(e) => setSearchTerm(e.target.value)}
-                                className="result-search-input"
-                            />
-                        </div>
-                    )}
-
                     {queryResult.status === 'loading' && <p className="loading-message">Loading results...</p>}
                     {queryResult.status === 'error' && <p className="error-message">{queryResult.message}</p>}
+                    {queryResult.status === 'warning' && <p className="warning-message">{queryResult.message}</p>}
                     {queryResult.status === 'success' && (
                         <>
                             {queryResult.message && !hasTabularData && <p className="success-message">{queryResult.message}</p>}

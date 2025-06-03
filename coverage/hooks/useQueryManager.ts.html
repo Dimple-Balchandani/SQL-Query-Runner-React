@@ -490,7 +490,7 @@ import {
 import {
     dummySchema
 } from '../constants';
-import { getDataFromQuery, getDataToDisplay } from '../utils';
+import { getDataForQuery, getDataToDisplay } from '../utils';
 import { initialQueryManagerState, queryManagerReducer, init } from '../reducers/queryManagerReducer';
 &nbsp;
 interface UseQueryManagerResult {
@@ -588,7 +588,7 @@ export const useQueryManager = (): UseQueryManagerResult =&gt; {
 &nbsp;
 <span class="cstat-no" title="statement not covered" >        dispatch({ type: 'SET_LOADING', payload: true });</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >        const resultData = getDataFromQuery(query);</span>
+<span class="cstat-no" title="statement not covered" >        const resultData = getDataForQuery(query);</span>
 <span class="cstat-no" title="statement not covered" >        runQueryLogic(query, resultData);</span>
 &nbsp;
 <span class="cstat-no" title="statement not covered" >        dispatch({ type: 'SET_LOADING', payload: false });</span>

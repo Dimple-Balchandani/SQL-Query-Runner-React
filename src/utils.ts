@@ -16,7 +16,7 @@ export const generateLargeDataset = (numRows: number): QueryData => {
     return { headers, rows };
 };
 
-export const getDataFromQuery = (query: string) => {
+export const getDataForQuery = (query: string) => {
     let resultData : QueryData | QueryResultState | null = null;
     if (query.toLowerCase().includes('from employees')) {
         resultData = dummyData.employees;

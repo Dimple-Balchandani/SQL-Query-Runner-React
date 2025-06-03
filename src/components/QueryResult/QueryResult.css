@@ -158,6 +158,7 @@
     background-color: #fff;
     display: flex; /* Use flexbox for potential icon/button inside later */
     align-items: center;
+    width: 60%;
   }
   
   /* Style for the search input itself */
@@ -183,6 +184,19 @@
     border-radius: 4px;
     background-color: #f9f9f9;
     overflow-x: auto;
+}
+
+.query-result-actions {
+    display: flex;
+    justify-content: space-between;
+}
+
+.query-result-actions button {
+    width: 15%;
+    padding: 10px 12px;
+    font-size: 0.9em;
+    height: 50px;
+    margin-top: 15px;
 }
 
 /* --- Responsive Adjustments --- */
@@ -218,15 +232,22 @@
     }
 
     .query-result-actions {
+        display: flex;
+        justify-content: space-between;
         flex-direction: column;
         gap: 8px;
     }
 
     .query-result-actions button {
-        width: 100%;
+        width: 40%;
         padding: 10px 12px;
         font-size: 0.9em;
+        height: 50px;
     }
+
+    .result-search-container {
+        width: 100%;
+      }
 
     .result-search-input {
         padding: 10px;

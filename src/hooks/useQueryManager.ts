@@ -9,7 +9,7 @@ import {
 import {
     dummySchema
 } from '../constants';
-import { getDataFromQuery, getDataToDisplay } from '../utils';
+import { getDataForQuery } from '../utils';
 import { initialQueryManagerState, queryManagerReducer, init } from '../reducers/queryManagerReducer';
 
 interface UseQueryManagerResult {
@@ -22,7 +22,6 @@ interface UseQueryManagerResult {
     editorRef: React.RefObject<HTMLTextAreaElement | null>;
     handleRunQuery: () => void;
     handleClear: () => void;
-    handlePredefinedQuerySelect: (queryId: string) => void;
     handleHistorySelect: (query: string) => void;
     handleSaveQuery: (name: string, queryToSave: string) => { success: boolean, message: string };
     handleLoadQuery: (queryId: string) => void;
@@ -107,7 +106,7 @@ export const useQueryManager = (): UseQueryManagerResult => {
 
         dispatch({ type: 'SET_LOADING', payload: true });
 
-        const resultData = getDataFromQuery(query);
+        const resultData = getDataForQuery(query);
         runQueryLogic(query, resultData);
 
         dispatch({ type: 'SET_LOADING', payload: false });
@@ -118,18 +117,11 @@ export const useQueryManager = (): UseQueryManagerResult => {
         dispatch({ type: 'CLEAR_ALL' });
     }, []);
 
-    // Handles selection of predefined queries
-    const handlePredefinedQuerySelect = useCallback((queryId: string) => {
-        const {queryText, dataToDisplay} = getDataToDisplay(queryId)
-        dispatch({ type: 'SET_QUERY_INPUT', payload: queryText });
-        runQueryLogic(queryText, dataToDisplay);
-    }, [runQueryLogic]);
-
     // Handles selection of a query from history
     const handleHistorySelect = useCallback((query: string) => {
         dispatch({ type: 'SET_QUERY_INPUT', payload: query });
-        handleRunQuery();
-    }, [handleRunQuery]);
+        dispatch({ type: 'SET_QUERY_RESULT', payload: { message: 'Please run the query.', status: 'warning' } });
+    }, []);
 
     // Handles saving the current query
     const handleSaveQuery = useCallback((name: string, queryToSave: string): { success: boolean, message: string } => {
@@ -159,9 +151,9 @@ export const useQueryManager = (): UseQueryManagerResult => {
         const queryToLoad = state.savedQueries.find(q => q.id === queryId);
         if (queryToLoad) {
             dispatch({ type: 'SET_QUERY_INPUT', payload: queryToLoad.query });
-            handleRunQuery();
+            dispatch({ type: 'SET_QUERY_RESULT', payload: { message: 'Please run the query.', status: 'warning' } });
         }
-    }, [state.savedQueries, handleRunQuery]);
+    }, [state.savedQueries]);
 
     // Handles deleting a saved query
     const handleDeleteSavedQuery = useCallback((queryId: string) => {
@@ -198,7 +190,6 @@ export const useQueryManager = (): UseQueryManagerResult => {
         editorRef,
         handleRunQuery,
         handleClear,
-        handlePredefinedQuerySelect,
         handleHistorySelect,
         handleSaveQuery,
         handleLoadQuery,

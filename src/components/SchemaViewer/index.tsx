@@ -24,7 +24,7 @@ const SchemaViewer: React.FC<SchemaViewerProps> = ({ schema, onSelect }) => {
 
     return (
         <section className="schema-viewer-section">
-            <h2>Schema Viewer</h2>
+            <h2>Schemas</h2>
             <div className="schema-tree">
                 {schema.length === 0 ? (
                     <p className="no-schema-message">No schema defined.</p>

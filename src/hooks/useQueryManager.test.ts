@@ -85,7 +85,7 @@ describe('useQueryManager', () => {
 
     test('handleRunQuery should handle queries that return no specific data or message', async () => {
         const { result } = renderHook(() => useQueryManager());
-        const testQuery = 'CREATE TABLE temp;'; // This query returns null from getDataFromQuery
+        const testQuery = 'CREATE TABLE temp;'; // This query returns null from getDataForQuery
 
         act(() => {
             result.current.setSqlQuery(testQuery);
@@ -105,7 +105,7 @@ describe('useQueryManager', () => {
 
     test('handleRunQuery should handle queries that result in an error message', async () => {
         const { result } = renderHook(() => useQueryManager());
-        const errorQuery = 'SELECT ERROR;'; // This query returns an error message from getDataFromQuery
+        const errorQuery = 'SELECT ERROR;'; // This query returns an error message from getDataForQuery
 
         act(() => {
             result.current.setSqlQuery(errorQuery);

@@ -39,7 +39,7 @@
     border-bottom: none; /* No border for the last item */
 }
 
-.history-item button {
+.history-item .query-button {
     display: flex;
     flex-direction: column;
     width: 100%;
@@ -54,7 +54,7 @@
     transition: background-color 0.2s ease;
 }
 
-.history-item button:hover {
+.history-item .query-button:hover {
     background-color: #eaf6ff; /* Light blue on hover */
 }
 
@@ -74,3 +74,39 @@
     color: #888;
     align-self: flex-end; /* Align timestamp to the right */
 }
+
+.history-item-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-right: 10px;
+  }
+  
+  .query-button {
+    flex-grow: 1;
+    text-align: left;
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+  }
+  
+  .save-button {
+    background-color: #007bff;
+    color: white;
+    padding: 6px 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.85em;
+    transition: background-color 0.2sease;
+  }
+  
+  .saved-tag {
+    margin-left: 1rem;
+    padding: 0.3em 0.6em;
+    background-color: #28a745;
+    color: white;
+    border-radius: 4px;
+    font-size: 0.85em;
+  }

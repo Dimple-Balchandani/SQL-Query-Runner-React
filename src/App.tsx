@@ -1,6 +1,5 @@
 import './App.css';
 import { useQueryManager } from './hooks/useQueryManager.ts';
-import PredefinedQueries from './components/PredefinedQueries';
 import QueryInputSection from './components/QueryInputSection';
 import QueryResult from './components/QueryResult';
 import QueryHistory from './components/QueryHistory';
@@ -18,7 +17,6 @@ function App() {
         editorRef,
         handleRunQuery,
         handleClear,
-        handlePredefinedQuerySelect,
         handleHistorySelect,
         handleSaveQuery,
         handleLoadQuery,
@@ -38,7 +36,7 @@ function App() {
 
             <div className="main-content">
                 <div className="left-panel">
-                    <PredefinedQueries onSelect={handlePredefinedQuerySelect} />
+                    <SchemaViewer schema={schema} onSelect={handleSchemaItemSelect} />
                     <QueryHistory history={queryHistory} onSelect={handleHistorySelect} />
                     <SavedQueries
                         currentQuery={sqlQuery}
@@ -47,7 +45,6 @@ function App() {
                         onLoad={handleLoadQuery}
                         onDelete={handleDeleteSavedQuery}
                     />
-                    <SchemaViewer schema={schema} onSelect={handleSchemaItemSelect} />
                 </div>
                 <div className="right-panel">
                     <QueryInputSection
