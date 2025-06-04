@@ -189,6 +189,7 @@
 .query-result-actions {
   display: flex;
   justify-content: space-between;
+  flex-direction: row-reverse;
 }
 
 .query-result-actions button {
@@ -243,7 +244,6 @@
     font-size: 0.9em;
     height: 50px;
     margin-top: 0;
-    margin-bottom: 20px;
   }
 
   .action-buttons {

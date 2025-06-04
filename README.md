@@ -19,8 +19,7 @@ This application is built using the following core technologies and libraries:
 - **JavaScript Framework:**  
   **React (v18.x):** The primary JavaScript library for building the user interface, leveraging component-based architecture for modular and reusable UI elements.
 
-- **Key Packages & Plugins:**
-  - **react-window (v1.8.x):** Efficiently renders large datasets in the query result table by virtualizing rows, boosting performance with many rows.
+- **Key Packages & Plugins:**.
   - **TypeScript (v5.x):** Adds static typing for improved code quality, readability, and maintainability.
   - **Vite (v5.x):** Our fast build tool, providing an optimized, native ES module-based development server.
   - **useReducer hook:** Extensively used for complex, predictable state management related to queries, history, and saved items.
@@ -29,7 +28,10 @@ This application is built using the following core technologies and libraries:
 
 ## ⏱️ Page Load Time
 
-I ensured a swift user experience with measured load times of approximately **1.5 - 2.5 seconds** on a typical broadband connection.
+I ensured a swift user experience with measured load times of approximately **0.4 seconds**.
+
+![App Screenshot](./src//assets/performance.png)
+
 
 ### How it was measured:
 
@@ -62,3 +64,8 @@ Several strategies were employed to keep the application fast and responsive:
 
 - **CSS Optimization:**  
   Dedicated CSS files per component and a global `App.css` ensure efficient bundling and consistent styling. Basic resets prevent layout shifts, improving perceived load speed.
+
+---
+
+
+

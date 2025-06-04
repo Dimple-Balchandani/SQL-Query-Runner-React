@@ -5,6 +5,7 @@ import QueryResult from './components/QueryResult';
 import QueryHistory from './components/QueryHistory';
 import SavedQueries from './components/SavedQueries';
 import SchemaViewer from './components/SchemaViewer';
+import PredefinedQueries from './components/PredefinedQueries';
 
 function App() {
   const {
@@ -22,6 +23,7 @@ function App() {
     handleLoadQuery,
     handleDeleteSavedQuery,
     handleSchemaItemSelect,
+    handlePredefinedQuerySelect,
     schema,
   } = useQueryManager();
 
@@ -36,6 +38,7 @@ function App() {
 
       <div className="main-content">
         <div className="left-panel">
+          <PredefinedQueries onSelect={handlePredefinedQuerySelect} />
           <SchemaViewer schema={schema} onSelect={handleSchemaItemSelect} />
           <QueryHistory
             queryHistory={queryHistory}

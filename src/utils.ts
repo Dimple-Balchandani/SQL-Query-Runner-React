@@ -128,37 +128,3 @@ export const exportAsCsv = (
     onFeedback?.('Failed to export CSV!');
   }
 };
-
-export const copyQueryResultsToClipboard = async (
-  queryResult: QueryResultState | null | undefined,
-  onFeedback?: (msg: string) => void
-): Promise<void> => {
-  if (
-    !queryResult ||
-    queryResult.status !== 'success' ||
-    (!queryResult.rows && !queryResult.message)
-  ) {
-    onFeedback?.('No results to copy!');
-    return;
-  }
-
-  let contentToCopy = '';
-  if (queryResult.headers && queryResult.rows && queryResult.rows.length > 0) {
-    const headerRow = queryResult.headers.map(escapeCsvField).join('\t');
-    const dataRows = queryResult.rows.map((row) => row.map(escapeCsvField).join('\t')).join('\n');
-    contentToCopy = `${headerRow}\n${dataRows}`;
-  } else if (queryResult.message) {
-    contentToCopy = queryResult.message;
-  } else {
-    onFeedback?.('No structured data or message to copy.');
-    return;
-  }
-
-  try {
-    await navigator.clipboard.writeText(contentToCopy);
-    onFeedback?.('Copied to clipboard!');
-  } catch (err) {
-    console.error('Failed to copy results: ', err);
-    onFeedback?.('Failed to copy!');
-  }
-};

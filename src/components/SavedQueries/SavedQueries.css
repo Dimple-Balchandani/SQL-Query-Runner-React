@@ -168,3 +168,14 @@
 .saved-query-item .query-actions .delete-btn:hover {
   background-color: #c82333;
 }
+
+.search-input {
+  width: 100%;
+  padding: 8px 10px;
+  margin: 10px 0 15px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background: white;
+  color: black;
+}

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useMemo } from 'react';
 import { SavedQuery } from '../../types';
 import './SavedQueries.css';
 
@@ -10,16 +10,37 @@ interface SavedQueriesProps {
   onDelete: (queryId: string) => void;
 }
 
-const SavedQueries: React.FC<SavedQueriesProps> = ({ savedQueries, onLoad, onDelete }) => {
+const SavedQueries: React.FC<SavedQueriesProps> = ({
+  savedQueries,
+  onLoad,
+  onDelete,
+}) => {
+  const [searchTerm, setSearchTerm] = useState('');
+
+  const filteredQueries = useMemo(() => {
+    const term = searchTerm.toLowerCase().trim();
+    return term
+      ? savedQueries.filter((q) => q.name.toLowerCase().includes(term))
+      : savedQueries;
+  }, [searchTerm, savedQueries]);
+
   return (
     <section className="saved-queries-section">
       <h2>Saved Queries</h2>
 
-      {savedQueries.length === 0 ? (
-        <p className="no-saved-queries-message">No queries saved yet.</p>
+      <input
+        type="text"
+        placeholder="Search by name..."
+        value={searchTerm}
+        onChange={(e) => setSearchTerm(e.target.value)}
+        className="search-input"
+      />
+
+      {filteredQueries.length === 0 ? (
+        <p className="no-saved-queries-message">No matching queries found.</p>
       ) : (
         <ul className="saved-queries-list">
-          {savedQueries.map((item) => (
+          {filteredQueries.map((item) => (
             <li key={item.name} className="saved-query-item">
               <div className="query-details">
                 <span className="query-name">{item.name}</span>

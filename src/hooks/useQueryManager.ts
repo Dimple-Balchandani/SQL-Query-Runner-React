@@ -1,7 +1,7 @@
 import { useEffect, useRef, useReducer, useCallback } from 'react';
 import { QueryData, QueryResultState, QueryHistoryItem, SavedQuery, SchemaTable } from '../types';
 import { dummySchema, LOCAL_STORAGE_SAVED_QUERIES_KEY } from '../constants';
-import { getDataForQuery } from '../utils';
+import { getDataForQuery, getDataToDisplay } from '../utils';
 import {
   initialQueryManagerState,
   queryManagerReducer,
@@ -23,6 +23,7 @@ interface UseQueryManagerResult {
   handleLoadQuery: (queryId: string) => void;
   handleDeleteSavedQuery: (queryId: string) => void;
   handleSchemaItemSelect: (item: string) => void;
+  handlePredefinedQuerySelect: (queryId: string) => void;
   schema: SchemaTable[];
 }
 
@@ -130,6 +131,16 @@ export const useQueryManager = (): UseQueryManagerResult => {
     dispatch({ type: 'CLEAR_ALL' });
   }, []);
 
+  // Handles selection of predefined queries
+  const handlePredefinedQuerySelect = useCallback((queryId: string) => {
+      const {queryText} = getDataToDisplay(queryId)
+      dispatch({ type: 'SET_QUERY_INPUT', payload: queryText });
+      dispatch({
+        type: 'SET_QUERY_RESULT',
+        payload: { message: 'Run the query to see results here.', status: 'warning' },
+      });
+  }, [runQueryLogic]);
+
   // Handles selection of a query from history
   const handleHistorySelect = useCallback((query: string) => {
     dispatch({ type: 'SET_QUERY_INPUT', payload: query });
@@ -224,6 +235,7 @@ export const useQueryManager = (): UseQueryManagerResult => {
     handleLoadQuery,
     handleDeleteSavedQuery,
     handleSchemaItemSelect,
+    handlePredefinedQuerySelect,
     schema: dummySchema,
   };
 };

@@ -1,0 +1,26 @@
+.predefined-queries {
+    margin-bottom: 30px;
+}
+
+.query-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.query-buttons button {
+    background-color: #e9ecef;
+    color: #0056b3;
+    border: 1px solid #ced4da;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9em;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+    text-align: left; 
+}
+
+.query-buttons button:hover {
+    background-color: #d6eaff;
+    border-color: #0056b3;
+}

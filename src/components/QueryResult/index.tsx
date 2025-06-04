@@ -1,19 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import './QueryResult.css';
 import { QueryResultProps, SortState } from '../../types';
-import { copyQueryResultsToClipboard, exportAsCsv } from '../../utils';
+import { exportAsCsv } from '../../utils';
 import ResponsivePaginatedTable from '../PaginatedTable/PaginatedTable';
 import usePaginatedFetcher from '../../hooks/usePaginatedFetcher';
 
 const QueryResult: React.FC<QueryResultProps> = ({ queryResult }) => {
-  const [copyFeedback, setCopyFeedback] = useState<string | null>(null);
   const [exportFeedback, setExportFeedback] = useState<string | null>(null);
   const [searchTerm, setSearchTerm] = useState<string>('');
   const [sortState, setSortState] = useState<SortState>({ column: null, direction: 'asc' });
-
-  const handleCopyResults = () => {
-    copyQueryResultsToClipboard(queryResult, setCopyFeedback);
-  };
 
   const handleExport = () => {
     exportAsCsv(queryResult, setExportFeedback);
@@ -59,6 +54,16 @@ const QueryResult: React.FC<QueryResultProps> = ({ queryResult }) => {
       {queryResult ? (
         <>
           <div className="query-result-actions">
+              {hasTabularData && (
+                <button
+                  onClick={handleExport}
+                  disabled={queryResult.status !== 'success'}
+                  className="export-csv-button"
+                >
+                  {exportFeedback || 'Export as CSV'}
+                </button>
+              )}
+            
             {hasTabularData && (
               <div className="result-search-container">
                 <input
@@ -70,35 +75,7 @@ const QueryResult: React.FC<QueryResultProps> = ({ queryResult }) => {
                 />
               </div>
             )}
-            <div className="action-buttons">
-              {hasTabularData && (
-                <button
-                  onClick={handleCopyResults}
-                  disabled={queryResult.status !== 'success'}
-                  className="copy-button"
-                >
-                  {copyFeedback || 'Copy to Clipboard'}
-                </button>
-              )}
-              {hasTabularData && (
-                <button
-                  onClick={handleExport}
-                  disabled={queryResult.status !== 'success'}
-                  className="export-csv-button"
-                >
-                  {exportFeedback || 'Export as CSV'}
-                </button>
-              )}
-            </div>
           </div>
-
-          {(copyFeedback || exportFeedback) && (
-            <p
-              className={`feedback-message ${copyFeedback ? 'copy' : 'export'} ${copyFeedback === 'Copied to clipboard!' || exportFeedback === 'CSV exported successfully!' ? 'success-feedback' : 'error-feedback'}`}
-            >
-              {copyFeedback || exportFeedback}
-            </p>
-          )}
 
           {queryResult.status === 'loading' && (
             <p className="loading-message">Loading results...</p>

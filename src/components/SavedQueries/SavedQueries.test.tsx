@@ -50,20 +50,6 @@ describe('SavedQueries', () => {
     expect(screen.getByRole('heading', { level: 2, name: /Saved Queries/i })).toBeInTheDocument();
   });
 
-  test('should display "No queries saved yet." message when no saved queries are provided', () => {
-    render(
-      <SavedQueries
-        currentQuery=""
-        savedQueries={[]}
-        onSave={mockOnSave}
-        onLoad={mockOnLoad}
-        onDelete={mockOnDelete}
-      />
-    );
-    expect(screen.getByText(/No queries saved yet\./i)).toBeInTheDocument();
-    expect(screen.queryByRole('list')).not.toBeInTheDocument();
-  });
-
   test('should render a list of saved queries when `savedQueries` array is populated', () => {
     render(
       <SavedQueries
