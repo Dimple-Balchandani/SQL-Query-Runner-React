@@ -8,7 +8,9 @@ This is a web application designed to simulate running SQL queries and displayin
 
 Check out this short video (under 3 minutes) for a quick overview of the application, a walkthrough of its implementation details, and a demonstration of how to execute queries:
 
-[Link to demo video]
+[Link to demo video](https://www.loom.com/share/d7b4e8a0df53431b97eb61cfbbad9c24?sid=413db342-56d1-4d73-9b0e-978d39d67e84)
+
+[Link to deployed app](https://stunning-sunburst-7e0307.netlify.app/)
 
 ---
 
@@ -67,5 +69,23 @@ Several strategies were employed to keep the application fast and responsive:
 
 ---
 
+## 🚀 Local Development
+
+To get the project running locally:
+
+### 1. Install dependencies
+```
+npm install
+```
+### 2. Start the development server
+```
+npm run dev
+```
+### 3. Run tests
+```
+npm run test
+```
+
+Make sure you have Node.js and npm installed.
 
 
