@@ -74,8 +74,7 @@ export type QueryManagerAction =
   | { type: 'SET_QUERY_RESULT'; payload: QueryResultState | null }
   | { type: 'SET_LOADING'; payload: boolean }
   | { type: 'ADD_HISTORY_ITEM'; payload: QueryHistoryItem }
-  | { type: 'UPDATE_HISTORY'; payload: QueryHistoryItem[] } // For loading from localStorage
+  | { type: 'UPDATE_HISTORY'; payload: QueryHistoryItem[] }
   | { type: 'ADD_OR_UPDATE_SAVED_QUERY'; payload: SavedQuery }
-  | { type: 'DELETE_SAVED_QUERY'; payload: string } // payload is queryId
-  | { type: 'UPDATE_SAVED_QUERIES'; payload: SavedQuery[] } // For loading from localStorage
+  | { type: 'DELETE_SAVED_QUERY'; payload: string }
   | { type: 'CLEAR_ALL' };

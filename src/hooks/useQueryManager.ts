@@ -10,12 +10,13 @@ import {
 
 interface UseQueryManagerResult {
   sqlQuery: string;
-  setSqlQuery: (query: string) => void;
   queryResult: QueryResultState | null;
   isLoading: boolean;
   queryHistory: QueryHistoryItem[];
   savedQueries: SavedQuery[];
   editorRef: React.RefObject<HTMLTextAreaElement | null>;
+  schema: SchemaTable[];
+  setSqlQuery: (query: string) => void;
   handleRunQuery: () => void;
   handleClear: () => void;
   handleHistorySelect: (query: string) => void;
@@ -24,7 +25,6 @@ interface UseQueryManagerResult {
   handleDeleteSavedQuery: (queryId: string) => void;
   handleSchemaItemSelect: (item: string) => void;
   handlePredefinedQuerySelect: (queryId: string) => void;
-  schema: SchemaTable[];
 }
 
 export const useQueryManager = (): UseQueryManagerResult => {
@@ -139,7 +139,7 @@ export const useQueryManager = (): UseQueryManagerResult => {
         type: 'SET_QUERY_RESULT',
         payload: { message: 'Run the query to see results here.', status: 'warning' },
       });
-  }, [runQueryLogic]);
+  }, []);
 
   // Handles selection of a query from history
   const handleHistorySelect = useCallback((query: string) => {
@@ -219,15 +219,15 @@ export const useQueryManager = (): UseQueryManagerResult => {
     }, 0);
   }, []);
 
-  // Return all states and handlers
   return {
     sqlQuery: state.sqlQuery,
-    setSqlQuery,
     queryResult: state.queryResult,
     isLoading: state.isLoading,
     queryHistory: state.queryHistory,
     savedQueries: state.savedQueries,
-    editorRef,
+    editorRef,    
+    schema: dummySchema,
+    setSqlQuery,
     handleRunQuery,
     handleClear,
     handleHistorySelect,
@@ -236,6 +236,5 @@ export const useQueryManager = (): UseQueryManagerResult => {
     handleDeleteSavedQuery,
     handleSchemaItemSelect,
     handlePredefinedQuerySelect,
-    schema: dummySchema,
   };
 };

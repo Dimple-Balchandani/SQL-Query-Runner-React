@@ -39,8 +39,6 @@ export const queryManagerReducer = (
       }
     case 'DELETE_SAVED_QUERY':
       return { ...state, savedQueries: state.savedQueries.filter((q) => q.id !== action.payload) };
-    case 'UPDATE_SAVED_QUERIES': // Used for initializing saved queries from localStorage
-      return { ...state, savedQueries: action.payload };
     case 'CLEAR_ALL':
       return { ...state, sqlQuery: '', queryResult: null, isLoading: false };
     default:

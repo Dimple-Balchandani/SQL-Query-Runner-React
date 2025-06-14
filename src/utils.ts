@@ -9,7 +9,7 @@ export const generateLargeDataset = (numRows: number): QueryData => {
       `ITEM-${String(i + 1).padStart(5, '0')}`,
       `Product ${i + 1}`,
       (Math.random() * 1000).toFixed(2),
-      `Description for item ${i + 1} - a very long text to test rendering efficiency.`,
+      `Description for item ${i + 1}`,
       new Date(Date.now() - Math.random() * 10000000000)
         .toISOString()
         .slice(0, 19)
